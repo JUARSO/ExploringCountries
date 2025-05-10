@@ -5,41 +5,47 @@
     <div class="modal-body">
       <div class="modal-flag-wrapper">
         <img
-          [src]="country.flags.png"
-          [alt]="country.name.official"
+          [src]="country.flags?.png"
+          [alt]="country.name?.official"
           class="country-flag-modal"
         />
       </div>
 
       <div class="modal-info">
-        <h2 class="modal-title">{{ country.name.official }} - {{ country.capital }}</h2>
+        <h2 class="modal-title">{{ country.name.official || 'N/A' }}</h2>
 
         <ul class="country-details">
-          <li><strong>Official Name:</strong> {{ country.name.official }}</li>
-          <li><strong>Capital:</strong> {{ country.capital }}</li>
-          <li><strong>Region:</strong> {{ country.region }}</li>
-          <li><strong>Subregion:</strong> {{ country.subregion }}</li>
-          <li><strong>Population:</strong> {{ country.population | number }}</li>
+          <li><strong>Common Name:</strong> {{ country.name.common || 'N/A' }}</li>
+          <li><strong>Capital:</strong> {{ country.capital || 'N/A' }}</li>
+          <li><strong>Region:</strong> {{ country.region || 'N/A' }}</li>
+          <li><strong>Subregion:</strong> {{ country.subregion || 'N/A' }}</li>
+          <li><strong>Population:</strong> {{ country.population ? (country.population | number) : 'N/A' }}</li>
           <li>
             <strong>Languages:</strong>
-            <span *ngFor="let language of getLanguages(country); let last = last">
-              {{ language }}<span *ngIf="!last">, </span>
+            <span *ngIf="getLanguages(country)?.length; else noLanguages">
+              <span *ngFor="let language of getLanguages(country); let last = last">
+                {{ language }}<span *ngIf="!last">, </span>
+              </span>
             </span>
+            <ng-template #noLanguages>N/A</ng-template>
           </li>
           <li>
-            <strong>Currency(ies):</strong>
-            <span *ngFor="let currency of getCurrencies(country); let last = last">
-              {{ currency.symbol }} - {{ currency.name }}<span *ngIf="!last">, </span>
+            <strong>Currency:</strong>
+            <span *ngIf="getCurrencies(country)?.length; else noCurrencies">
+              <span *ngFor="let currency of getCurrencies(country); let last = last">
+                {{ currency.name }} ({{ currency.symbol }})<span *ngIf="!last">, </span>
+              </span>
             </span>
+            <ng-template #noCurrencies>N/A</ng-template>
           </li>
           <li>
             <strong>Border Countries:</strong>
             <span *ngIf="country.borders?.length; else noBorders">
-              <span *ngFor="let border of country.borders; let last = last">
+              <span *ngFor="let border of country.borderCountries; let last = last">
                 {{ border }}<span *ngIf="!last">, </span>
               </span>
             </span>
-            <ng-template #noBorders>None</ng-template>
+            <ng-template #noBorders>N/A</ng-template>
           </li>
         </ul>
       </div>
