@@ -1,0 +1,21 @@
+<div class="country-cards-container">
+  <div class="country-card" *ngFor="let country of countries" (click)="openModal(country)">
+    <img
+      [src]="country.flags.png"
+      [alt]="country.name.official"
+      class="country-flag"
+    />
+    <div class="country-info">
+      <h2 class="country-name">{{ country.name.official }}</h2>
+      <p><strong>Region:</strong> {{ country.region }}</p>
+      <p><strong>Population:</strong> {{ country.population }}</p>
+    </div>
+  </div>
+</div>
+
+<app-country-modal
+  [country]="selectedCountry!"
+  [showModal]="showModal"
+  (closeModalClicked)="closeModal()"
+></app-country-modal>
+

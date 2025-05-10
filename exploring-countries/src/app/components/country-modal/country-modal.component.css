@@ -1,0 +1,132 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2.5rem 2rem 2rem 2rem;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ✅ Botón de cierre mejor posicionado */
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-flag-wrapper {
+  width: 100%;
+}
+
+.country-flag-modal {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.modal-info {
+  width: 100%;
+}
+
+.country-details {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.country-details li {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+/* ✅ Pantallas grandes: dos columnas */
+@media (min-width: 580px) {
+  .modal-body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .modal-flag-wrapper {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 1.5rem;
+  }
+
+  .modal-info {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .country-flag-modal {
+    max-height: 100%;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ✅ Móviles: mejora visual */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 2rem 1rem 1.5rem 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .country-details {
+    font-size: 0.88rem;
+  }
+
+  .country-flag-modal {
+    max-height: 180px;
+  }
+
+  .close-button {
+    font-size: 1.5rem;
+    top: 10px;
+    right: 12px;
+  }
+}

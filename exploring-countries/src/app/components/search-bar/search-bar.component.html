@@ -1,0 +1,15 @@
+<!-- search-bar.component.html -->
+<div class="search-bar">
+  <form class="search-form" (submit)="onSearchCountry(searchTerm); $event.preventDefault()">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Buscar país..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchCountry($event)"
+      name="search"
+    />
+  </form>
+</div>
+
+
